@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BARBOSSA ONLINE MARKET</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f0f4f8, #ffffff);
+}
+
+/* Контейнер */
+.login-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* Анимированный заголовок */
+.market-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #ff6a00, #ee0979, #00f260, #1f8ef1);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Поля ввода */
+.input-field {
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 12px rgba(0,123,255,0.4);
+    outline: none;
+    transform: scale(1.02);
+}
+
+/* Кнопка */
+.btn-login {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Анимация успеха */
+@keyframes successBounce {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.05); }
+    50% { transform: scale(0.95); }
+    70% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Анимация ошибки */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+    100% { transform: translateX(0); }
+}
+
+.error-msg {
+    color: #ff4d4f;
+    margin-bottom: 20px;
+    display: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+</style>
+</head>
+<body>
+
+<div class="login-container" id="loginContainer">
+    <div class="market-title">BARBOSSA ONLINE MARKET</div>
+    <div class="error-msg" id="errorMsg">Логин или пароль неверный!</div>
+    <input type="text" id="username" class="input-field" placeholder="Логин">
+    <input type="password" id="password" class="input-field" placeholder="Пароль">
+    <button class="btn-login" onclick="login()">Войти</button>
+</div>
+
+<script>
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMsg = document.getElementById('errorMsg');
+    const container = document.getElementById('loginContainer');
+
+    if(username === "Uzbek" && password === "uzbek") {
+        errorMsg.style.display = "none";
+        container.style.animation = "successBounce 0.5s";
+        setTimeout(() => {
+            alert("Успешно!");
+        }, 500);
+    } else {
+        // Показываем сообщение об ошибке
+        errorMsg.style.display = "block";
+
+        // Добавляем анимацию тряски
+        container.style.animation = "shake 0.3s";
+
+        // Убираем анимацию через 0.3с чтобы можно было повторно анимировать
+        setTimeout(() => {
+            container.style.animation = "";
+        }, 300);
+    }
+}
+</script>
+
+</body>
+</html>
